@@ -1,0 +1,18 @@
+{
+  "name": "tiny",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/binding.js",
+  "gypfile": true,
+  "scripts": {
+    "build": "node-gyp configure build",
+    "test": "node --napi-modules ./test/test_binding.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "node-addon-api": "^3.0.1"
+  }
+}
