@@ -1,4 +1,4 @@
-const Tiny = require("./lib/bindings")
+const Tiny = require("tinytron")
 
 const window = new Tiny();
 window.setSize(500, 600);

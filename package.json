@@ -1,19 +1,35 @@
 {
   "name": "tinytron",
   "version": "1.0.0",
-  "description": "",
-  "main": "lib/binding.js",
+  "description": "This is a tiny alternative to electron",
+  "main": "index.js",
   "gypfile": true,
   "scripts": {
     "build": "node-gyp configure build",
-    "test": "node --napi-modules ./example.js"
+    "test": "node --napi-modules ./example.js",
+    "install": "node-gyp rebuild"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "webview",
+    "electron",
+    "window"
+  ],
+  "author": "Rafi993",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "node-addon-api": "^1.0.0",
     "node-gyp": "^7.0.0"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafi993/tiny.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rafi993/tiny/issues"
+  },
+  "homepage": "https://github.com/Rafi993/tiny#readme"
 }
