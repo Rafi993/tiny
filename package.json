@@ -1,6 +1,6 @@
 {
   "name": "tinytron",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is a tiny alternative to electron",
   "main": "index.js",
   "gypfile": true,
