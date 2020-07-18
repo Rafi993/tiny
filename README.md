@@ -24,10 +24,14 @@ $ yarn add tinytron
 ## Usage
 
 ```javascript
-const Tiny = require("tinytron");
+const Tiny = require("tinytron")
 
-const window = Tiny();
-window.setSize(400, 300);
-window.setTitle("Hello World");
-window.setURL("https://github.com/nodejs/node-addon-api");
+const window = new Tiny();
+window.setSize(500, 600);
+window.setTitle("Your app");
+
+// When using your own app use express to run the server and pass the url
+window.navigate("http://dev.to/");
+window.run();
+window.destroy()
 ```
