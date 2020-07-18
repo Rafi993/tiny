@@ -13,7 +13,8 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "node-addon-api": "^3.0.1",
+    "node-addon-api": "^1.0.0",
+    "bindings": "~1.2.1",
     "node-gyp": "^7.0.0"
   }
 }

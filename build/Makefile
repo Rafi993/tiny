@@ -308,13 +308,18 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
     $(findstring $(join ^,$(prefix)),\
-                 $(join ^,node_modules/node-addon-api/nothing.target.mk)))),)
-  include node_modules/node-addon-api/nothing.target.mk
+                 $(join ^,node_modules/node-addon-api/src/node-api.target.mk)))),)
+  include node_modules/node-addon-api/src/node-api.target.mk
+endif
+ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
+    $(findstring $(join ^,$(prefix)),\
+                 $(join ^,node_modules/node-addon-api/src/nothing.target.mk)))),)
+  include node_modules/node-addon-api/src/nothing.target.mk
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
 cmd_regen_makefile = cd $(srcdir); /home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "--toplevel-dir=." -I/home/rafi/Projects/stuff_builder/build/config.gypi -I/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/home/rafi/.cache/node-gyp/12.16.3/include/node/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/rafi/.cache/node-gyp/12.16.3" "-Dnode_gyp_dir=/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp" "-Dnode_lib_file=/home/rafi/.cache/node-gyp/12.16.3/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/rafi/Projects/stuff_builder" "-Dnode_engine=v8" binding.gyp
-Makefile: $(srcdir)/../../.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/../../.cache/node-gyp/12.16.3/include/node/common.gypi $(srcdir)/node_modules/node-addon-api/node_api.gyp $(srcdir)/binding.gyp $(srcdir)/build/config.gypi
+Makefile: $(srcdir)/../../.cache/node-gyp/12.16.3/include/node/common.gypi $(srcdir)/../../.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/node_modules/node-addon-api/src/node_api.gyp $(srcdir)/build/config.gypi $(srcdir)/binding.gyp
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included

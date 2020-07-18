@@ -1,13 +1,14 @@
-cmd_Release/obj.target/addon/src/addon.o := g++ '-DNODE_GYP_MODULE_NAME=addon' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-DV8_DEPRECATION_WARNINGS' '-DV8_IMMINENT_DEPRECATION_WARNINGS' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-D__STDC_FORMAT_MACROS' '-DOPENSSL_NO_PINSHARED' '-DOPENSSL_THREADS' '-DNAPI_DISABLE_CPP_EXCEPTIONS' '-DBUILDING_NODE_EXTENSION' -I/home/rafi/.cache/node-gyp/12.16.3/include/node -I/home/rafi/.cache/node-gyp/12.16.3/src -I/home/rafi/.cache/node-gyp/12.16.3/deps/openssl/config -I/home/rafi/.cache/node-gyp/12.16.3/deps/openssl/openssl/include -I/home/rafi/.cache/node-gyp/12.16.3/deps/uv/include -I/home/rafi/.cache/node-gyp/12.16.3/deps/zlib -I/home/rafi/.cache/node-gyp/12.16.3/deps/v8/include -I../node_modules/node-addon-api  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -O3 -fno-omit-frame-pointer -fno-rtti -fno-exceptions -std=gnu++1y -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -pthread -I/usr/include/webkitgtk-4.0 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/webkitgtk-4.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -MMD -MF ./Release/.deps/Release/obj.target/addon/src/addon.o.d.raw   -c -o Release/obj.target/addon/src/addon.o ../src/addon.cc
+cmd_Release/obj.target/addon/src/addon.o := g++ '-DNODE_GYP_MODULE_NAME=addon' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-DV8_DEPRECATION_WARNINGS' '-DV8_IMMINENT_DEPRECATION_WARNINGS' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-D__STDC_FORMAT_MACROS' '-DOPENSSL_NO_PINSHARED' '-DOPENSSL_THREADS' '-DNAPI_DISABLE_CPP_EXCEPTIONS' '-DBUILDING_NODE_EXTENSION' -I/home/rafi/.cache/node-gyp/12.16.3/include/node -I/home/rafi/.cache/node-gyp/12.16.3/src -I/home/rafi/.cache/node-gyp/12.16.3/deps/openssl/config -I/home/rafi/.cache/node-gyp/12.16.3/deps/openssl/openssl/include -I/home/rafi/.cache/node-gyp/12.16.3/deps/uv/include -I/home/rafi/.cache/node-gyp/12.16.3/deps/zlib -I/home/rafi/.cache/node-gyp/12.16.3/deps/v8/include -I/home/rafi/Projects/stuff_builder/node_modules/node-addon-api  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -O3 -fno-omit-frame-pointer -fno-rtti -fno-exceptions -std=gnu++1y -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -pthread -I/usr/include/webkitgtk-4.0 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/webkitgtk-4.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -MMD -MF ./Release/.deps/Release/obj.target/addon/src/addon.o.d.raw   -c -o Release/obj.target/addon/src/addon.o ../src/addon.cc
 Release/obj.target/addon/src/addon.o: ../src/addon.cc \
- ../node_modules/node-addon-api/napi.h \
+ /home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi.h \
  /home/rafi/.cache/node-gyp/12.16.3/include/node/node_api.h \
  /home/rafi/.cache/node-gyp/12.16.3/include/node/js_native_api.h \
  /home/rafi/.cache/node-gyp/12.16.3/include/node/js_native_api_types.h \
  /home/rafi/.cache/node-gyp/12.16.3/include/node/node_api_types.h \
- ../node_modules/node-addon-api/napi-inl.h \
- ../node_modules/node-addon-api/napi-inl.deprecated.h ../src/tiny.h \
- ../src/webview.h /usr/include/webkitgtk-4.0/JavaScriptCore/JavaScript.h \
+ /home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi-inl.h \
+ /home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi-inl.deprecated.h \
+ ../src/tiny.h ../src/webview.h \
+ /usr/include/webkitgtk-4.0/JavaScriptCore/JavaScript.h \
  /usr/include/webkitgtk-4.0/JavaScriptCore/JSBase.h \
  /usr/include/webkitgtk-4.0/JavaScriptCore/JSContextRef.h \
  /usr/include/webkitgtk-4.0/JavaScriptCore/JSObjectRef.h \
@@ -729,13 +730,13 @@ Release/obj.target/addon/src/addon.o: ../src/addon.cc \
  /usr/include/webkitgtk-4.0/webkit2/WebKitVersion.h \
  /usr/include/webkitgtk-4.0/webkit2/WebKitAutocleanups.h
 ../src/addon.cc:
-../node_modules/node-addon-api/napi.h:
+/home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi.h:
 /home/rafi/.cache/node-gyp/12.16.3/include/node/node_api.h:
 /home/rafi/.cache/node-gyp/12.16.3/include/node/js_native_api.h:
 /home/rafi/.cache/node-gyp/12.16.3/include/node/js_native_api_types.h:
 /home/rafi/.cache/node-gyp/12.16.3/include/node/node_api_types.h:
-../node_modules/node-addon-api/napi-inl.h:
-../node_modules/node-addon-api/napi-inl.deprecated.h:
+/home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi-inl.h:
+/home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi-inl.deprecated.h:
 ../src/tiny.h:
 ../src/webview.h:
 /usr/include/webkitgtk-4.0/JavaScriptCore/JavaScript.h:

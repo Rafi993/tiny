@@ -98,7 +98,7 @@ INCS_Debug := \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/uv/include \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/zlib \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/v8/include \
-	-I$(srcdir)/node_modules/node-addon-api
+	-I/home/rafi/Projects/stuff_builder/node_modules/node-addon-api
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=addon' \
@@ -193,17 +193,16 @@ INCS_Release := \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/uv/include \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/zlib \
 	-I/home/rafi/.cache/node-gyp/12.16.3/deps/v8/include \
-	-I$(srcdir)/node_modules/node-addon-api
+	-I/home/rafi/Projects/stuff_builder/node_modules/node-addon-api
 
 OBJS := \
-	$(obj).target/$(TARGET)/src/addon.o \
-	$(obj).target/$(TARGET)/src/tiny.o
+	$(obj).target/$(TARGET)/src/addon.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
 
 # Make sure our dependencies are built before any of us.
-$(OBJS): | $(builddir)/nothing.a $(obj).target/node_modules/node-addon-api/nothing.a
+$(OBJS): | $(builddir)/nothing.a $(obj).target/node_modules/node-addon-api/src/nothing.a
 
 # CFLAGS et al overrides must be target-local.
 # See "Target-specific Variable Values" in the GNU Make manual.
@@ -255,7 +254,7 @@ LIBS := \
 $(obj).target/addon.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(obj).target/addon.node: LIBS := $(LIBS)
 $(obj).target/addon.node: TOOLSET := $(TOOLSET)
-$(obj).target/addon.node: $(OBJS) $(obj).target/node_modules/node-addon-api/nothing.a FORCE_DO_CMD
+$(obj).target/addon.node: $(OBJS) $(obj).target/node_modules/node-addon-api/src/nothing.a FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
 all_deps += $(obj).target/addon.node
