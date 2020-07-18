@@ -1,6 +1,6 @@
 {
   "name": "tinytron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a tiny alternative to electron",
   "main": "index.js",
   "gypfile": true,
@@ -16,8 +16,7 @@
   ],
   "author": "Rafi993",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "node-addon-api": "^1.0.0",
     "node-gyp": "^7.0.0"
   },
