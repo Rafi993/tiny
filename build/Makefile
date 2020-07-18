@@ -121,17 +121,17 @@ endef
 # - quiet_cmd_foo is the brief-output summary of the command.
 
 quiet_cmd_cc = CC($(TOOLSET)) $@
-cmd_cc = $(CC.$(TOOLSET)) -o $@ $< $(GYP_CFLAGS) $(DEPFLAGS) $(CFLAGS.$(TOOLSET)) -c
+cmd_cc = $(CC.$(TOOLSET)) $(GYP_CFLAGS) $(DEPFLAGS) $(CFLAGS.$(TOOLSET)) -c -o $@ $<
 
 quiet_cmd_cxx = CXX($(TOOLSET)) $@
-cmd_cxx = $(CXX.$(TOOLSET)) -o $@ $< $(GYP_CXXFLAGS) $(DEPFLAGS) $(CXXFLAGS.$(TOOLSET)) -c
+cmd_cxx = $(CXX.$(TOOLSET)) $(GYP_CXXFLAGS) $(DEPFLAGS) $(CXXFLAGS.$(TOOLSET)) -c -o $@ $<
 
 quiet_cmd_touch = TOUCH $@
 cmd_touch = touch $@
 
 quiet_cmd_copy = COPY $@
 # send stderr to /dev/null to ignore messages when linking directories.
-cmd_copy = ln -f "$<" "$@" 2>/dev/null || (rm -rf "$@" && cp -af "$<" "$@")
+cmd_copy = rm -rf "$@" && cp -af "$<" "$@"
 
 quiet_cmd_alink = AR($(TOOLSET)) $@
 cmd_alink = rm -f $@ && $(AR.$(TOOLSET)) crs $@ $(filter %.o,$^)
@@ -143,7 +143,7 @@ cmd_alink_thin = rm -f $@ && $(AR.$(TOOLSET)) crsT $@ $(filter %.o,$^)
 # special "figure out circular dependencies" flags around the entire
 # input list during linking.
 quiet_cmd_link = LINK($(TOOLSET)) $@
-cmd_link = $(LINK.$(TOOLSET)) -o $@ $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,--start-group $(LD_INPUTS) $(LIBS) -Wl,--end-group
+cmd_link = $(LINK.$(TOOLSET)) $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -o $@ -Wl,--start-group $(LD_INPUTS) $(LIBS) -Wl,--end-group
 
 # We support two kinds of shared objects (.so):
 # 1) shared_library, which is just bundling together many dependent libraries
@@ -162,10 +162,10 @@ cmd_link = $(LINK.$(TOOLSET)) -o $@ $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,--s
 # - Set SONAME to the library filename so our binaries don't reference
 # the local, absolute paths used on the link command-line.
 quiet_cmd_solink = SOLINK($(TOOLSET)) $@
-cmd_solink = $(LINK.$(TOOLSET)) -o $@ -shared $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,-soname=$(@F) -Wl,--whole-archive $(LD_INPUTS) -Wl,--no-whole-archive $(LIBS)
+cmd_solink = $(LINK.$(TOOLSET)) -shared $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,-soname=$(@F) -o $@ -Wl,--whole-archive $(LD_INPUTS) -Wl,--no-whole-archive $(LIBS)
 
 quiet_cmd_solink_module = SOLINK_MODULE($(TOOLSET)) $@
-cmd_solink_module = $(LINK.$(TOOLSET)) -o $@ -shared $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,-soname=$(@F) -Wl,--start-group $(filter-out FORCE_DO_CMD, $^) -Wl,--end-group $(LIBS)
+cmd_solink_module = $(LINK.$(TOOLSET)) -shared $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -Wl,-soname=$(@F) -o $@ -Wl,--start-group $(filter-out FORCE_DO_CMD, $^) -Wl,--end-group $(LIBS)
 
 
 # Define an escape_quotes function to escape single quotes.
@@ -268,9 +268,9 @@ $(obj).$(TOOLSET)/%.o: $(srcdir)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 $(obj).$(TOOLSET)/%.o: $(srcdir)/%.cxx FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
-$(obj).$(TOOLSET)/%.o: $(srcdir)/%.s FORCE_DO_CMD
-	@$(call do_cmd,cc,1)
 $(obj).$(TOOLSET)/%.o: $(srcdir)/%.S FORCE_DO_CMD
+	@$(call do_cmd,cc,1)
+$(obj).$(TOOLSET)/%.o: $(srcdir)/%.s FORCE_DO_CMD
 	@$(call do_cmd,cc,1)
 
 # Try building from generated source, too.
@@ -282,9 +282,9 @@ $(obj).$(TOOLSET)/%.o: $(obj).$(TOOLSET)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 $(obj).$(TOOLSET)/%.o: $(obj).$(TOOLSET)/%.cxx FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
-$(obj).$(TOOLSET)/%.o: $(obj).$(TOOLSET)/%.s FORCE_DO_CMD
-	@$(call do_cmd,cc,1)
 $(obj).$(TOOLSET)/%.o: $(obj).$(TOOLSET)/%.S FORCE_DO_CMD
+	@$(call do_cmd,cc,1)
+$(obj).$(TOOLSET)/%.o: $(obj).$(TOOLSET)/%.s FORCE_DO_CMD
 	@$(call do_cmd,cc,1)
 
 $(obj).$(TOOLSET)/%.o: $(obj)/%.c FORCE_DO_CMD
@@ -295,26 +295,26 @@ $(obj).$(TOOLSET)/%.o: $(obj)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 $(obj).$(TOOLSET)/%.o: $(obj)/%.cxx FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
-$(obj).$(TOOLSET)/%.o: $(obj)/%.s FORCE_DO_CMD
-	@$(call do_cmd,cc,1)
 $(obj).$(TOOLSET)/%.o: $(obj)/%.S FORCE_DO_CMD
 	@$(call do_cmd,cc,1)
+$(obj).$(TOOLSET)/%.o: $(obj)/%.s FORCE_DO_CMD
+	@$(call do_cmd,cc,1)
 
 
+ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
+    $(findstring $(join ^,$(prefix)),\
+                 $(join ^,addon.target.mk)))),)
+  include addon.target.mk
+endif
 ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
     $(findstring $(join ^,$(prefix)),\
                  $(join ^,node_modules/node-addon-api/nothing.target.mk)))),)
   include node_modules/node-addon-api/nothing.target.mk
 endif
-ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
-    $(findstring $(join ^,$(prefix)),\
-                 $(join ^,tiny.target.mk)))),)
-  include tiny.target.mk
-endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = cd $(srcdir); /home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/rafi/.cache/node-gyp/12.16.3" "-Dnode_gyp_dir=/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/node-gyp" "-Dnode_lib_file=/home/rafi/.cache/node-gyp/12.16.3/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/rafi/Projects/stuff_builder" "-Dnode_engine=v8" "--depth=." "-Goutput_dir=." "--generator-output=build" -I/home/rafi/Projects/stuff_builder/build/config.gypi -I/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/node-gyp/addon.gypi -I/home/rafi/.cache/node-gyp/12.16.3/include/node/common.gypi "--toplevel-dir=." binding.gyp
-Makefile: $(srcdir)/../../.nvm/versions/node/v12.16.3/lib/node_modules/node-gyp/addon.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../.cache/node-gyp/12.16.3/include/node/common.gypi $(srcdir)/node_modules/node-addon-api/node_api.gyp
+cmd_regen_makefile = cd $(srcdir); /home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "--toplevel-dir=." -I/home/rafi/Projects/stuff_builder/build/config.gypi -I/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/home/rafi/.cache/node-gyp/12.16.3/include/node/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/rafi/.cache/node-gyp/12.16.3" "-Dnode_gyp_dir=/home/rafi/.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp" "-Dnode_lib_file=/home/rafi/.cache/node-gyp/12.16.3/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/rafi/Projects/stuff_builder" "-Dnode_engine=v8" binding.gyp
+Makefile: $(srcdir)/../../.nvm/versions/node/v12.16.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/../../.cache/node-gyp/12.16.3/include/node/common.gypi $(srcdir)/node_modules/node-addon-api/node_api.gyp $(srcdir)/binding.gyp $(srcdir)/build/config.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
