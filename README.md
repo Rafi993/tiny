@@ -12,7 +12,7 @@ make sure you have these [native dependencies](./dependencies.md) installed then
 
 ```
 $ npm i tinytron
-``
+```
 
 or 
 
