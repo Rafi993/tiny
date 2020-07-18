@@ -1,12 +1,12 @@
 {
-  "name": "tiny",
+  "name": "tinytron",
   "version": "1.0.0",
   "description": "",
   "main": "lib/binding.js",
   "gypfile": true,
   "scripts": {
     "build": "node-gyp configure build",
-    "test": "node --napi-modules ./test/test_binding.js"
+    "test": "node --napi-modules ./example.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,6 @@
   "dependencies": {},
   "devDependencies": {
     "node-addon-api": "^1.0.0",
-    "bindings": "~1.2.1",
     "node-gyp": "^7.0.0"
   }
 }

@@ -496,6 +496,10 @@ public:
     gtk_window_set_title(GTK_WINDOW(m_window), title.c_str());
   }
 
+  void destroy() {
+    webview_destroy(WEBKIT_WEB_VIEW(m_webview));
+  }
+
   void set_size(int width, int height, int hints) {
     gtk_window_set_resizable(GTK_WINDOW(m_window), hints != WEBVIEW_HINT_FIXED);
     if (hints == WEBVIEW_HINT_NONE) {

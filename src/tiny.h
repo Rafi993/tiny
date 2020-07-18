@@ -150,7 +150,7 @@ void Tiny::Destroy(const Napi::CallbackInfo &info)
         .ThrowAsJavaScriptException();
   }
 
-  // this->window_.destroy();
+  this->window_.destroy();
 }
 
 
