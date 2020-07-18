@@ -1,8 +1,10 @@
 var addon = require('bindings')('addon');
 
 const window = new addon.Tiny();
-window.setSize(400, 300);
-window.setTitle("Hello World");
-window.navigate("https://en.m.wikipedia.org/wiki/Main_Page");
+window.setSize(500, 600);
+window.setTitle("Your app");
+
+// When using your own app use express to run the server and pass the url
+window.navigate("http://dev.to/");
 window.run();
 // window.destroy()

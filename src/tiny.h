@@ -77,7 +77,8 @@ void Tiny::SetTitle(const Napi::CallbackInfo &info)
     Napi::TypeError::New(env, "title should be string").ThrowAsJavaScriptException();
   }
 
-  const char *title = info[0].As<Napi::String>().Utf8Value().c_str();
+  std::string str = info[0].ToString().Utf8Value();
+  const char *title = str.c_str();
   this->window_.set_title(title);
 }
 
@@ -98,7 +99,8 @@ void Tiny::Navigate(const Napi::CallbackInfo &info)
     Napi::TypeError::New(env, "URL should be string").ThrowAsJavaScriptException();
   }
 
-  const char *url = info[0].As<Napi::String>().Utf8Value().c_str();
+  std::string str = info[0].ToString().Utf8Value();
+  const char *url = str.c_str();
   this->window_.navigate(url);
 }
 
