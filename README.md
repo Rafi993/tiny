@@ -18,7 +18,6 @@ or
 
 ```
 $ yarn add tinytron
-
 ```
 
 ## Usage
@@ -35,3 +34,7 @@ window.navigate("http://dev.to/");
 window.run();
 window.destroy()
 ```
+
+
+## Generating binary
+To convert your app to single binary do look at [pkg](https://www.npmjs.com/package/pkg)
