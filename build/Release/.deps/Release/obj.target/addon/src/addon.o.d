@@ -728,7 +728,8 @@ Release/obj.target/addon/src/addon.o: ../src/addon.cc \
  /usr/include/webkitgtk-4.0/webkit2/WebKitUserContentFilterStore.h \
  /usr/include/webkitgtk-4.0/webkit2/WebKitUserMediaPermissionRequest.h \
  /usr/include/webkitgtk-4.0/webkit2/WebKitVersion.h \
- /usr/include/webkitgtk-4.0/webkit2/WebKitAutocleanups.h
+ /usr/include/webkitgtk-4.0/webkit2/WebKitAutocleanups.h \
+ ../src/windowworker.h
 ../src/addon.cc:
 /home/rafi/Projects/stuff_builder/node_modules/node-addon-api/napi.h:
 /home/rafi/.cache/node-gyp/12.16.3/include/node/node_api.h:
@@ -1499,3 +1500,4 @@ Release/obj.target/addon/src/addon.o: ../src/addon.cc \
 /usr/include/webkitgtk-4.0/webkit2/WebKitUserMediaPermissionRequest.h:
 /usr/include/webkitgtk-4.0/webkit2/WebKitVersion.h:
 /usr/include/webkitgtk-4.0/webkit2/WebKitAutocleanups.h:
+../src/windowworker.h:

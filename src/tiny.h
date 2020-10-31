@@ -1,8 +1,9 @@
 #ifndef TINY_H
 #define TINY_H
 
-#include "webview.h"
 #include <napi.h>
+#include "webview.h"
+#include "windowworker.h"
 
 class Tiny : public Napi::ObjectWrap<Tiny>
 {
@@ -21,7 +22,6 @@ private:
 
   webview::webview window_;
 };
-
 
 Napi::FunctionReference Tiny::constructor;
 
@@ -130,13 +130,17 @@ void Tiny::Run(const Napi::CallbackInfo &info)
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
-  if (info.Length() > 0)
+  if (info.Length() == 0)
   {
-    Napi::TypeError::New(env, "It does not take any arguments")
+    Napi::TypeError::New(env, "You have to pass callback function")
         .ThrowAsJavaScriptException();
   }
 
-  this->window_.run();
+  Function cb = info[0].As<Function>();
+  WindowWorker *worker = new WindowWorker(this->window_, cb);
+  worker->Queue();
+
+  // this->window_.run();
 }
 
 void Tiny::Destroy(const Napi::CallbackInfo &info)
@@ -152,6 +156,5 @@ void Tiny::Destroy(const Napi::CallbackInfo &info)
 
   this->window_.destroy();
 }
-
 
 #endif
