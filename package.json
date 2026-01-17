@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "node-addon-api": "^1.0.0",
-    "node-gyp": "^7.0.0"
+    "node-gyp": "^12.1.0"
   },
   "directories": {
     "lib": "lib"
